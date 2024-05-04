@@ -4,6 +4,7 @@ using AspnetCoreMvcFull.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspnetCoreMvcFull.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240504184555_add-system-entities")]
+    partial class addsystementities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,19 +41,19 @@ namespace AspnetCoreMvcFull.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -70,19 +73,19 @@ namespace AspnetCoreMvcFull.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -105,10 +108,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("ChefId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Details")
@@ -124,10 +127,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -159,19 +162,19 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RecepieId")
@@ -198,10 +201,10 @@ namespace AspnetCoreMvcFull.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IngredientId")
@@ -210,10 +213,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RecepieId")
@@ -226,6 +229,25 @@ namespace AspnetCoreMvcFull.Migrations
                     b.HasIndex("RecepieId");
 
                     b.ToTable("RecepieIngredients");
+                });
+
+            modelBuilder.Entity("AspnetCoreMvcFull.Models.TestModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Text")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TextAr")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TestModel");
                 });
 
             modelBuilder.Entity("AspnetCoreMvcFull.Models.UserEntities.BaseUser", b =>
@@ -248,11 +270,16 @@ namespace AspnetCoreMvcFull.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -265,10 +292,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
@@ -291,6 +318,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("BaseUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("AspnetCoreMvcFull.Models.UserEntities.Role", b =>
@@ -301,19 +332,19 @@ namespace AspnetCoreMvcFull.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RoleName")
@@ -344,19 +375,19 @@ namespace AspnetCoreMvcFull.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PageTitle")
@@ -381,10 +412,10 @@ namespace AspnetCoreMvcFull.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("HomePageDetailId")
@@ -393,10 +424,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
@@ -426,19 +457,19 @@ namespace AspnetCoreMvcFull.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("PaymentDate")
@@ -478,10 +509,10 @@ namespace AspnetCoreMvcFull.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ExpiryDate")
@@ -495,10 +526,10 @@ namespace AspnetCoreMvcFull.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
@@ -524,19 +555,19 @@ namespace AspnetCoreMvcFull.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RecepieId")
@@ -562,19 +593,19 @@ namespace AspnetCoreMvcFull.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LastModifedBy")
+                    b.Property<int>("LastModifedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModifiedDate")
+                    b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -589,35 +620,9 @@ namespace AspnetCoreMvcFull.Migrations
 
             modelBuilder.Entity("RecepieBlog.Models.UserEntities.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasBaseType("AspnetCoreMvcFull.Models.UserEntities.BaseUser");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BaseUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LastModifedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BaseUserId");
-
-                    b.ToTable("Users");
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("AspnetCoreMvcFull.Models.RecepiesEntities.Recepie", b =>
@@ -756,17 +761,6 @@ namespace AspnetCoreMvcFull.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("RecepieBlog.Models.UserEntities.User", b =>
-                {
-                    b.HasOne("AspnetCoreMvcFull.Models.UserEntities.BaseUser", "BaseUser")
-                        .WithMany()
-                        .HasForeignKey("BaseUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BaseUser");
                 });
 
             modelBuilder.Entity("AspnetCoreMvcFull.Models.RecepiesEntities.Category", b =>
