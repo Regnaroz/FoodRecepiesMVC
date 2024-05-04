@@ -1,19 +1,16 @@
 using AspnetCoreMvcFull.Models.Base;
+using AspnetCoreMvcFull.Models.UserEntities;
+using RecepieBlog.Models.HomeEntities;
+using RecepieBlog.Models.PaymentEntities;
 
-namespace AspnetCoreMvcFull.Models.UserEntities
+namespace RecepieBlog.Models.UserEntities
 {
   public class User : BaseEntity
   {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string PasswordHash { get; set; }
-    public string ProfilePicturePath { get; set; }
-    public string Country { get; set; }
-    public string City { get; set; }
-    public string Adderss { get; set; }
-    public int RoleId { get; set; }
-    public Role Role { get; set; }
-
+    public int BaseUserId { get; set; }
+    public virtual BaseUser BaseUser { get; set; }
+    public virtual ICollection<UserRecepie> UserRecepies {  get; set; }
+    public virtual ICollection<Testimonial> UserTestimonials {  get; set; }
+    public virtual UserPaymentMethod? UserPaymentMethod { get; set; }
   }
 }

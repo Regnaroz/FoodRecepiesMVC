@@ -2,8 +2,7 @@ namespace AspnetCoreMvcFull.Shared.Enums
 {
   public enum Roles
   {
-    SuperAdmin = 1,
-    Admin ,
+    Admin = 1,
     Chef,
     User,
     GuestUser
