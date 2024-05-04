@@ -14,6 +14,6 @@ namespace AspnetCoreMvcFull.Data
         {
         }
 
-        public DbSet<AspnetCoreMvcFull.Models.TestModel> TestModel { get; set; } = default!;
+        public DbSet<TestModel> TestModel { get; set; } = default!;
     }
 }
