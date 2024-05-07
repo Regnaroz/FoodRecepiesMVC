@@ -1,5 +1,9 @@
 @{
-  ViewData["Title"] = "Dashboard - Analytics";
+    TempData.Keep();
+    ViewData["Title"] = "Dashboard - Analytics";
+    TempData["FullName"] = ViewBag.FullName;
+    TempData["RoleName"] = ViewBag.RoleName;
+
 }
 @section VendorStyles {
 <link rel="stylesheet" href="~/vendor/libs/apex-charts/apex-charts.css" />
